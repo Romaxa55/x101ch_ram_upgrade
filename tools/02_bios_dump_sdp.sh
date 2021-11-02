@@ -9,10 +9,15 @@ if [ ! -f "$1" ]; then
     exit 1
 fi
 
-variable=$(xxd -u $1 | grep "9210 0B03" |  sed 's/:.*//')
+variable=$(od -v -t x1 $1 | sed 's/[^ ]* *//' | tr '\012' ' ' | grep -b -i -o "92 10 0B 03" | sed 's/:.*/\/3/' | bc)
+#variable=$(xxd -u $1 | grep "9210 0B03" |  sed 's/:.*//')
 IFS=', ' read -r -a array <<< "$variable"
+
+
 
 for var in $variable
 do
-		dd if=$1 of=../spd_$var  bs=1 count=$((0x100)) skip=$((0x$var))
+	#echo $var
+	dd if=$1 of=../dump_spd_$var  bs=1 count=$((0x100)) skip=$var
+	../spd-tool -i ../dump_spd_$var
 done
