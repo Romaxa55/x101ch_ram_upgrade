@@ -9,16 +9,12 @@ if [ ! -f "$1" ]; then
     exit 1
 fi
 
+readarray -t variable < /tmp/hash.tmp
+cp $1 ../dump_spd_Edited_BIOS.bin
 
-for f in /tmp/hash.tmp
+for var in $variable
 do
- echo "Processing $f"
- # do something on $f
-done
-
-#for var in $variable
-#do
-	#echo $var
-	#dd if=$1 of=../dump_spd_$var  bs=1 count=$((0x100)) skip=$var
+	echo ok
+	dd conv=notrunc if=../dump_spd_$var of=../dump_spd_Edited_BIOS.bin bs=1 seek=$var
 	#../spd-tool -i ../dump_spd_$var
-# done
+done
