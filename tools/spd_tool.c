@@ -1,25 +1,4 @@
-/* The MIT License (MIT)
- *
- * Copyright (c) 2019 Mikhail Karev
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
+
 
 #include <spd.h>
 
@@ -30,6 +9,9 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
+#include <stdint.h> // uint64_t
+#include <inttypes.h> // PRIu64
+
 
 enum Options {
     OP_INPUT = 'i',
@@ -39,7 +21,7 @@ enum Options {
 
     OP_SET_LP = 'z' + 1,
     OP_RESET_LP,
-    OP_FIX_CRC
+    OP_FIX_CRC = 'f'
 };
 
 typedef struct Args
@@ -55,33 +37,45 @@ typedef struct Args
 static void print_usage()
 {
     printf(
-        "DDR3 SPD helper tool\n"
         "Usage:\n"
         "    spd-tool OPTIONS\n\n"
         "OPTIONS:\n"
-        "    --input,-i INPUT_FILE\n"
-        "        Input EEPROM binary dump\n"
-        "    --output,-o OUTPUT_FILE\n"
-        "        Output EEPROM binary dump\n"
+        "    --input,-i <DUMP.SPD>\n"
+        "    --output,-o <DUMP.SPD>\n"
         "    --set-lp\n"
-        "        Set low power mode\n"
-        "        Module minimum nominal voltage 1.35 V\n"
-        "     --fix-crc\n"
+        "        Set low power mode (1.35V)\n"
+        "     --fix-crc,-f\n"
         "        Fix CRC checksum\n"
         "    --verbose, -v\n"
-        "        Verbose output\n"
         "    --help, -h\n"
-        "        Print this message\n\n"
         "EXAMPLES\n"
         "    Print detailed SPD info\n"
-        "        spd-tool -i dump.bin -V\n"
+        "        ./spd-tool -i dump.bin -V\n"
         "    Fix incorrect CRC checksum and save result to the same file\n"
-        "        spd-tool -i dump.bin --fix-crc -o dump.bin\n"
+        "        ./spd-tool -i dump.bin --fix-crc -o dump.bin\n"
         "    Convert DDR3 to LP-DDR3\n"
-        "        spd-tool -i dump_1.5v.bin --set-lp -o dump_1.35v.bin\n"
+        "        ./spd-tool -i dump_1.5v.bin --set-lp -o dump_1.35v.bin\n"
         "    Convert LP-DDR3 to DDR3\n"
-        "        spd-tool -i dump_lp-ddr.bin --reset-lp -o dump_ddr.bin\n"
+        "        ./spd-tool -i dump_lp-ddr.bin --reset-lp -o dump_ddr.bin\n"
     );
+}
+
+static const char *humanSize(uint64_t bytes)
+{
+    char *suffix[] = {"B", "KB", "MB", "GB", "TB"};
+    char length = sizeof(suffix) / sizeof(suffix[0]);
+
+    int i = 0;
+    double dblBytes = bytes;
+
+    if (bytes > 1024) {
+        for (i = 0; (bytes / 1024) > 0 && i<length-1; i++, bytes /= 1024)
+            dblBytes = bytes / 1024.0;
+    }
+
+    static char output[200];
+    sprintf(output, "%.02lf %s", dblBytes, suffix[i]);
+    return output;
 }
 
 static void parse_args(Args *args, int argc, char* argv[])
@@ -103,7 +97,7 @@ static void parse_args(Args *args, int argc, char* argv[])
             { 0, 0, 0, 0 }
         };
         int index = 0;
-        int c = getopt_long(argc, argv, "i:o:Vh", options, &index);
+        int c = getopt_long(argc, argv, "e:i:o:Vh", options, &index);
         if (c == -1) {
             break;
         }
@@ -133,37 +127,56 @@ static void parse_args(Args *args, int argc, char* argv[])
                 exit(EXIT_FAILURE);
         }
     }
-    if (!args->in_file) {
-        printf("Input file is a required agrument: --input,-i\n");
-        exit(EXIT_FAILURE);
-    }
+
     if (args->set_lp && args->reset_lp) {
         printf("Options --set-lp and --reset-lp are mutually exclusive\n");
         exit(EXIT_FAILURE);
     }
 }
 
-bool read_input(const Args *args, uint8_t *data, size_t size)
+bool export_spd(const Args *args, uint8_t* data)
+{
+    
+    for (int i = 0; i < 256; i++){
+        // if (data[i] == 0x92) {
+        printf("%02x ", data[i]);
+// }
+    //       printf("%02x ", data[i]);
+    //     }
+
+    }
+    return true;
+}
+
+bool read_input(const Args *args, uint64_t *data, size_t size, bool *is_export)
 {
     FILE *f = fopen(args->in_file, "rb");
+    size_t  sz = fread(data, 1, 256, f);
+
     if (!f) {
         printf("Can't open input file: %s\n", args->in_file);
         return false;
     }
-    if (size != fread(data, 1, size, f)) {
-        printf("Input file too small\n");
+
+    if (size > sz){ 
+        printf("File is %s have size %s, enable dump SPD for export\n", args->in_file,humanSize(sz));   
+        *is_export = true;
+        return true;
+    }
+
+    if(size < sz) {
         fclose(f);
         return false;
-    }
+        }
     fclose(f);
+    
     return true;
 }
 
-bool write_output(const Args *args, uint8_t* data, size_t size)
+bool write_output(const Args *args, uint64_t* data, size_t size)
 {
     FILE* f = fopen(args->out_file, "wb");
     if (!f) {
-        printf("Can't open output file: %s\n", args->out_file);
         return false;
     }
     if (size != fwrite(data, 1, size, f)) {
@@ -177,10 +190,17 @@ bool write_output(const Args *args, uint8_t* data, size_t size)
 
 static bool run_tool(const Args *args)
 {
-    uint8_t spd_data[SPD_SIZE_MAX];
-    if (!read_input(args, spd_data, sizeof(spd_data))) {
-        printf("Read input file failed\n");
-        return false;
+    uint64_t spd_data[SPD_SIZE_MAX];
+    bool is_export = false;
+
+    if (!read_input(args, spd_data, sizeof(spd_data), &is_export)) {
+            printf("Read input file failed\n");
+            return false;
+        }
+
+    if (!is_export){
+            export_spd(args, spd_data);
+            return false;
     }
     bool data_changed = false;
 
@@ -204,12 +224,14 @@ static bool run_tool(const Args *args)
         printf("\nOutput:\n"); spd_print(&i, args->verbose);
     }
 
+
     if (args->out_file) {
         if (!write_output(args, spd_data, sizeof(spd_data))) {
             printf("Write output file failed\n");
             return false;
         }
     }
+    
     return true;
 }
 
