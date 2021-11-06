@@ -10,4 +10,5 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 spd-tool
+ddr3spd
 dump_spd*
