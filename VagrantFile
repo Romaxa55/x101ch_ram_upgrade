@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
              sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/g' /etc/ssh/sshd_config    
              service ssh restart
              sudo apt update 2>/dev/null | grep packages | cut -d '.' -f 1 && sudo apt install -y git cmake default-jre build-essential pkg-config 2>/dev/null | grep packages
-             git clone https://github.com/Romaxa55/x101ch_ram_upgrade.git && cd x101ch_ram_upgrade && chown vagrant:vagrant -R /home/vagrant/ && cd /home/vagrant/x101ch_ram_upgrade/tools && ./01_build.sh
+             git clone https://github.com/Romaxa55/x101ch_ram_upgrade.git && cd x101ch_ram_upgrade && chown vagrant:vagrant -R /home/vagrant/
              echo "Ок, все успешно установилось, теперь заходим на виртуальную машину по ssh\n vagrant ssh "
           SHELL
           #
