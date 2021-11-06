@@ -14,7 +14,6 @@ servers=[
 Vagrant.configure("2") do |config|
   # Отключить дефолтную шару
   config.vm.synced_folder ".", "/vagrant", disabled: false
-  config.vm.synced_folder ".", "/home/vagrant", type: "virtualbox"
 
   # Проходим по элементах массива "servers"
   servers.each do |machine|  
