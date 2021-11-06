@@ -13,7 +13,9 @@ servers=[
 ]
 Vagrant.configure("2") do |config|
   # Отключить дефолтную шару
-  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder ".", "/vagrant", disabled: false
+  config.vm.synced_folder ".", "/home/vagrant", type: "virtualbox"
+
   # Проходим по элементах массива "servers"
   servers.each do |machine|  
     # Применяем конфигурации для каждой машины. Имя машины(как ее будет видно в Vbox GUI) находится в переменной "machine[:hostname]"
@@ -37,7 +39,7 @@ Vagrant.configure("2") do |config|
           node.ssh.password = "vagrant"
           node.vm.provision "shell", inline: <<-SHELL
              sudo apt update 2>/dev/null | grep packages | cut -d '.' -f 1 && sudo apt install -y git cmake build-essential pkg-config 2>/dev/null | grep packages
-             git clone https://github.com/Romaxa55/x101ch_ram_upgrade.git && cd x101ch_ram_upgrade && cd x101ch_ram_upgrade/tools && ./01_build.sh
+             git clone https://github.com/Romaxa55/x101ch_ram_upgrade.git && cd x101ch_ram_upgrade && cd /home/vagrant/x101ch_ram_upgrade/tools && ./01_build.sh
              echo "Ок, все успешно установилось, теперь заходим на виртуальную машину по ssh\n vagrant ssh "
           SHELL
           #
