@@ -15,38 +15,11 @@ _Установка Vagrant сама по себе очень проста, Ва
 $ vagrant up
 ```
 
-
-####  Установка из репозитория
+## Заходим на виртуальную машину
 ```sh
-git clone https://github.com/Romaxa55/avito.git
-cd avito
-docker build -t avito .
+$ vagrant ssh
 ```
 
-**Запусти команду**
-```sh
-# Запуск контейнера
-docker run -it --rm --name Avito_Parser -v -v local-db:/usr/src/app/ \
--e TELEGRAM_CHAT_ID=test \
--e TELEGRAM_TOKEN=12345 \
--e AVITO_PARSE_URL="https://www.avito.ru/sankt-peterburg/noutbuki?f=ASgCAQECAUDwvA0UiNI0AUXGmgwWeyJmcm9tIjo1MDAsInRvIjo1MDAwfQ&user=1" \
-avito
-```
-
-
-####  Установка из докера
-
-```sh
-docker pull romaxa55/avito
-```
-
-**Запусти команду**
-```sh
-docker run -it --rm --name Avito_Parser -v local-db:/usr/src/app/ \
--e TELEGRAM_CHAT_ID=test \
--e TELEGRAM_TOKEN=12345 \
--e AVITO_PARSE_URL="https://www.avito.ru/sankt-peterburg/noutbuki?f=ASgCAQECAUDwvA0UiNI0AUXGmgwWeyJmcm9tIjo1MDAsInRvIjo1MDAwfQ&user=1" \
-romaxa55/avito
-```
+Заходим 
 
 java -jar SPDEditorGUI.jar
