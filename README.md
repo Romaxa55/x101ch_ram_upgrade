@@ -1,4 +1,4 @@
-# ASUS x101ch ram upgrade
+# ASUS X101CH UPGRADE & OVER CLOCKING
 =============
 
 ## Описание
