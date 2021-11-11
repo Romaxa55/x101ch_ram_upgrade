@@ -26,6 +26,7 @@ curl -o Vagrantfile -k https://raw.githubusercontent.com/Romaxa55/x101ch_ram_upg
 
 #### Запускаем сборку виртульно машины
 ```bash
+mkdir vagrant
 vagrant up
 ```
 
