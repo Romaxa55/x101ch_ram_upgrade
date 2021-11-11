@@ -1,7 +1,7 @@
 #/bin/bash
 if [ -z "$1" ]
   then
-    echo "Use ./bios_dump_sdp.sh <BIOS X101CH>"
+    echo "Use ./read_BIOS.sh <BIOS X101CH>"
 fi
 
 if [ ! -f "$1" ]; then
