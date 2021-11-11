@@ -13,7 +13,7 @@ servers=[
 ]
 Vagrant.configure("2") do |config|
   # Отключить дефолтную шару
-  config.vm.synced_folder ".", "/vagrant", disabled: false
+  config.vm.synced_folder "vagrant", "/home/vagrant/x101ch_ram_upgrade", disabled: false
 
   # Проходим по элементах массива "servers"
   servers.each do |machine|  
