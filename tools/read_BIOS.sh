@@ -20,6 +20,6 @@ for var in $variable
 do
 	#echo $var
 	dd if=$1 of=../dump_spd_$i  bs=1 count=$((0x100)) skip=$var
-	../spd-tool -i ../dump_spd_$i
+	./spd-tool -i ../dump_spd_$i
 	let "i=i+1"
 done
