@@ -12,9 +12,11 @@ fi
 readarray -t variable < /tmp/hash.tmp
 cp $1 ../dump_spd_Edited_BIOS.bin
 
+i=0
 for var in $variable
 do
 	echo ok
-	dd conv=notrunc if=../dump_spd_$var of=../dump_spd_Edited_BIOS.bin bs=1 seek=$var
-	#../spd-tool -i ../dump_spd_$var
+	dd conv=notrunc if=../dump_spd_$i of=../dump_spd_Edited_BIOS.bin bs=1 seek=$var
+	rm ../dump_spd_$i
+	let "i=i+1"
 done
