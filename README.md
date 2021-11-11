@@ -23,10 +23,13 @@ _Установка Vagrant сама по себе очень проста, Ва
 ```bash
 curl -o Vagrantfile -k https://raw.githubusercontent.com/Romaxa55/x101ch_ram_upgrade/main/VagrantFile
 ```
+#### Создаем общий каталок с виртуальной машиной
+```bash
+mkdir vagrant
+```
 
 #### Запускаем сборку виртульно машины
 ```bash
-mkdir vagrant
 vagrant up
 ```
 
