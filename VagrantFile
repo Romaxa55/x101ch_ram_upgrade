@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
           node.vm.provision "shell", inline: <<-SHELL
              sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/g' /etc/ssh/sshd_config    
              service ssh restart
-             sudo apt update 2>/dev/null | grep packages | cut -d '.' -f 1 && sudo apt install -y git cmake hexeditor build-essential cowsay pkg-config 2>/dev/null | grep packages
+             sudo apt update 2>/dev/null | grep packages | cut -d '.' -f 1 && sudo apt install -y git cmake hexedit build-essential cowsay pkg-config 2>/dev/null | grep packages
              git clone https://github.com/Romaxa55/x101ch_ram_upgrade.git && cd x101ch_ram_upgrade && chown vagrant:vagrant -R /home/vagrant/
              echo "cd x101ch_ram_upgrade/" >> /home/vagrant/.bashrc
              echo "cowsay -f tux \"https://github.com/Romaxa55/x101ch_ram_upgrade\"" >> /home/vagrant/.bashrc
