@@ -19,8 +19,9 @@ _Установка Vagrant сама по себе очень проста, Ва
 После установки виртуальной машины, сохраняем к себе на компьютер [Vagrantfile](https://raw.githubusercontent.com/Romaxa55/x101ch_ram_upgrade/main/VagrantFile) или можно скачать командой ниже
  
 #### Скачать проект на компьютер  (Windows)
+```bash
 [https://github.com/Romaxa55/x101ch_ram_upgrade/archive/refs/heads/main.zip](https://github.com/Romaxa55/x101ch_ram_upgrade/archive/refs/heads/main.zip)
-
+```
 #### ИЛИ
 
 #### Скачать шаблон deploy Vagrantfile через Curl (MacOS & Linux)
