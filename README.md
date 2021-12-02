@@ -29,22 +29,23 @@ _Установка Vagrant сама по себе очень проста, Ва
 curl -o Vagrantfile -k https://raw.githubusercontent.com/Romaxa55/x101ch_ram_upgrade/main/VagrantFile
 ```
 
-#### Запускаем сборку виртульно машины (Windows)
+### Запускаем сборку виртульно машины 
+#### Windows
 ```bash
 Двойной клик по run.bat
 ```
-
-#### Запускаем сборку виртульно машины (MacOS & Linux)
+#### MacOS & Linux
 ```bash
 bash run.sh
 ```
 
-#### Заходим на виртуальную машину (Windows)
+### Заходим на виртуальную машину 
+#### Windows
 ```bash
 Двойной клик по ssh.bat
 ```
 
-#### Заходим на виртуальную машину (MacOS & Linux)
+#### MacOS & Linux
 ```bash
 vagrant ssh
 ```
