@@ -1,0 +1,2 @@
+mkdir vagrant
+vagrant up
