@@ -20,9 +20,9 @@ _Установка Vagrant сама по себе очень проста, Ва
  
 #### Скачать проект на компьютер  (Windows)
 
-***[https://github.com/Romaxa55/x101ch_ram_upgrade/archive/refs/heads/main.zip](https://github.com/Romaxa55/x101ch_ram_upgrade/archive/refs/heads/main.zip)
+[https://github.com/Romaxa55/x101ch_ram_upgrade/archive/refs/heads/main.zip](https://github.com/Romaxa55/x101ch_ram_upgrade/archive/refs/heads/main.zip)
 
-#### ИЛИ
+##### ИЛИ
 
 #### Скачать шаблон deploy Vagrantfile через Curl (MacOS & Linux)
 ```bash
