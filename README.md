@@ -49,4 +49,6 @@ bash run.sh
 ```bash
 vagrant ssh
 ```
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5IHWch_4VXQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<center>
+[![Watch the video](https://i9.ytimg.com/vi/zQIfm9haTdU/maxresdefault.jpg)](https://www.youtube.com/embed/5IHWch_4VXQ)
+ </center>
