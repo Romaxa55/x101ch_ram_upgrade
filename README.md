@@ -49,9 +49,4 @@ bash run.sh
 ```bash
 vagrant ssh
 ```
-<p align="center">
- 
- [![Видео обзор по upgrade](https://i9.ytimg.com/vi/5IHWch_4VXQ/mqdefault.jpg?v=61b4dc7f&sqp=CNSp1I0G&rs=AOn4CLC_Clxd1k9jLAC5nbPK3heYMytxuw)](https://www.youtube.com/watch?v=5IHWch_4VXQ)
- 
- </p>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5IHWch_4VXQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
