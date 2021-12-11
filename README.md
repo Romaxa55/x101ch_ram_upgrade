@@ -49,8 +49,4 @@ bash run.sh
 ```bash
 vagrant ssh
 ```
-<center>
- 
 [![Watch the video](https://i9.ytimg.com/vi/zQIfm9haTdU/maxresdefault.jpg)](https://www.youtube.com/embed/5IHWch_4VXQ)
- 
-</center>
