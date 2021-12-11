@@ -1,6 +1,8 @@
 # ASUS X101CH UPGRADE & OVER CLOCKING
 =============
 
+[![Watch the video](https://i9.ytimg.com/vi/5IHWch_4VXQ/hqdefault.jpg?v=61b4dc7f&sqp=CNSp1I0G&rs=AOn4CLBqHzowWMkYj0ACgTycSgnfyrnK2A)](https://www.youtube.com/embed/5IHWch_4VXQ)
+
 ## Описание
 _Цель проекта - прокачка старенького нетбука, а имено:_
 1. Увеличить RAM с 1Gb до 2Gb 
@@ -49,4 +51,4 @@ bash run.sh
 ```bash
 vagrant ssh
 ```
-[![Watch the video](https://i9.ytimg.com/vi/5IHWch_4VXQ/hqdefault.jpg?v=61b4dc7f&sqp=CNSp1I0G&rs=AOn4CLBqHzowWMkYj0ACgTycSgnfyrnK2A)](https://www.youtube.com/embed/5IHWch_4VXQ)
+
