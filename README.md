@@ -3,7 +3,7 @@
 
 Видео на YOUTUBE
 
-[![Watch the video](https://raw.githubusercontent.com/Romaxa55/x101ch_ram_upgrade/main/src/Preview.png)](https://www.youtube.com/embed/5IHWch_4VXQ)
+[![Watch the video](https://raw.githubusercontent.com/Romaxa55/x101ch_ram_upgrade/main/src/preview.png)](https://www.youtube.com/embed/5IHWch_4VXQ)
 
 ## Описание
 _Цель проекта - прокачка старенького нетбука, а имено:_
