@@ -1,7 +1,8 @@
 # ASUS X101CH UPGRADE & OVER CLOCKING
 =============
 Видео на YOUTUBE
-[![Watch the video](https://i9.ytimg.com/vi/5IHWch_4VXQ/hqdefault.jpg?v=61b4dc7f&sqp=CNSp1I0G&rs=AOn4CLBqHzowWMkYj0ACgTycSgnfyrnK2A)](https://www.youtube.com/embed/5IHWch_4VXQ)
+
+[![Watch the video](https://raw.githubusercontent.com/Romaxa55/x101ch_ram_upgrade/main/src/Preview.png)](https://www.youtube.com/embed/5IHWch_4VXQ)
 
 ## Описание
 _Цель проекта - прокачка старенького нетбука, а имено:_
